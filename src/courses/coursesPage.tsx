@@ -28,7 +28,8 @@ export function CoursesPage() {
   return (
     <div>
       <CoursesForm onSubmit={onFormSubmit}></CoursesForm>
-      {data && <CourseCard course={data?.courseById} />}
+      {data?.courseById && <CourseCard course={data?.courseById} />}
+      {data && !data?.courseById && <p>not found</p>}
       {loading && <p>loading...</p>}
       {error && <p>error!</p>}
     </div>
