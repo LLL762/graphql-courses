@@ -1,0 +1,32 @@
+form {
+  max-width: 600px;
+  min-width: 320px;
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 1px black solid;
+}
+
+fieldset {
+  margin-bottom: 1em;
+}
+
+input {
+  margin-left: 1em;
+  vertical-align: middle;
+}
+
+input[type="number"] {
+  width: 10ch;
+}
+
+.input-label {
+  display: inline-flex;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.btn-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}

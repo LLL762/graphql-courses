@@ -7,31 +7,10 @@ import {
   useState,
 } from "react";
 import { FieldsOpts } from "../graphql/coursesQueries";
-
-function ResCheckBox(props: ResCheckBoxProps) {
-  const finalName = `${props.name}-${props.field}`;
-
-  return (
-    <>
-      <label htmlFor={finalName}>{props.field}</label>
-      <input
-        type="checkbox"
-        name={finalName}
-        id={finalName}
-        onClick={props.onClick}
-      />
-    </>
-  );
-}
+import { ResCheckBox } from "./resourceCheckbox";
 
 interface CheckboxesGroupProps {
   disabled?: boolean;
-}
-
-interface ResCheckBoxProps {
-  name: string;
-  field: string;
-  onClick: MouseEventHandler<HTMLInputElement>;
 }
 
 function TeacherCheckboxes(props: CourseFormChildProps) {
@@ -116,22 +95,27 @@ export function CoursesForm(props: CoursesFormProps) {
 
   return (
     <form onSubmit={onSubmit}>
-      <label htmlFor="course-id">id </label>
-      <input
-        onKeyDownCapture={onIdInputKeyDown}
-        onChange={onIdInputChange}
-        id="course-id"
-        name="course-id"
-        type="number"
-        min={1}
-        required
-      ></input>
-      <ResCheckBox
-        name="course"
-        field="description"
-        onClick={onCheckboxClick}
-      />
-      <ResCheckBox name="course" field="degree" onClick={onCheckboxClick} />
+      <fieldset>
+        <legend>Course</legend>
+        <div className="input-label">
+          <label htmlFor="course-id">id </label>
+          <input
+            onKeyDownCapture={onIdInputKeyDown}
+            onChange={onIdInputChange}
+            id="course-id"
+            name="course-id"
+            type="number"
+            min={1}
+            required
+          ></input>
+        </div>
+        <ResCheckBox
+          name="course"
+          field="description"
+          onClick={onCheckboxClick}
+        />
+        <ResCheckBox name="course" field="degree" onClick={onCheckboxClick} />
+      </fieldset>
       <ResCheckBox name="course" field="teacher" onClick={onCheckboxClick} />
       <TeacherCheckboxes
         disabled={teacherDisabled}
@@ -142,12 +126,14 @@ export function CoursesForm(props: CoursesFormProps) {
         disabled={studentDisabled}
         onClick={onCheckboxClick}
       ></StudentsCheckboxes>
-      <button disabled={!isValid()} type="submit">
-        submit
-      </button>
-      <button onClick={onReset} type="reset">
-        reset
-      </button>
+      <div className="btn-bar">
+        <button disabled={!isValid()} type="submit">
+          submit
+        </button>
+        <button onClick={onReset} type="reset">
+          reset
+        </button>
+      </div>
     </form>
   );
 }

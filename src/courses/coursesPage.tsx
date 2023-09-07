@@ -3,6 +3,7 @@ import { CourseFormData, CoursesForm } from "./components/coursesForm";
 import { FieldsOpts, buildQueryInner } from "./graphql/coursesQueries";
 import { gql, useLazyQuery } from "@apollo/client";
 import { CourseCard } from "./components/courseCard";
+import "./style/form.css";
 
 export function CoursesPage() {
   const [id, setId] = useState<string>();
